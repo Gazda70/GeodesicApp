@@ -25,6 +25,11 @@
  */
 
 
+import com.jsevy.jdxf.BSpline;
+import com.jsevy.jdxf.DXFDocument;
+import com.jsevy.jdxf.DXFGraphics;
+import com.jsevy.jdxf.RealPoint;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -144,7 +149,7 @@ public class DXFTestPanel extends JPanel
     /**
      * Used to draw both on the screen and to the PDF document, to check if the PDF image matches the
      * one on the screen
-     * @param canvas  Either a "normal" canvas for screen rendering or one associated with a PDF Page
+     * @param graphics  Either a "normal" canvas for screen rendering or one associated with a PDF Page
      */
     private void drawDesign(Graphics2D graphics)
     {

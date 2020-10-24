@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jdxf">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Biblioteki/jdxf_lib_v1.3/jdxf.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
