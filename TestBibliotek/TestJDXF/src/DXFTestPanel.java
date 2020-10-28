@@ -49,14 +49,10 @@ import java.awt.geom.Path2D;
 import java.awt.geom.QuadCurve2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 
 import javax.swing.JPanel;
-
-
-
-
+import javax.swing.text.html.parser.Parser;
 
 
 public class DXFTestPanel extends JPanel
@@ -193,7 +189,23 @@ public class DXFTestPanel extends JPanel
         {
             testHatch(graphics);
         }
+        if (displayContent.equals("Moje testy"))
+        {
+            myTest(graphics);
+        }
 
+    }
+
+    private void myTest(Graphics graphics){ //"C:\\Users\\gazda\\Desktop\\goa_frame_base_3mm_v1-5.dxf"
+        DXFDocument doc = new
+                DXFDocument("Testowy");
+
+            FileReader fileReader =
+                    new FileReader("C:/Users/gazda/Desktop/Politechnicznestudia/IO/Projekt/GeodesicApp/TestBibliotek/TestJDXFjdxf_test_dxf_file_generation_graphics.dxf");
+
+
+        DXFGraphics docGraphics = doc.getGraphics();
+        paint(docGraphics);
 
     }
 

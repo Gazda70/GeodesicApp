@@ -43,7 +43,7 @@ public class DXFTest extends JFrame
 
     private MenuBar theMenubar;
     private Menu fileMenu;
-    private MenuItem quitItem, graphicsItem, textTransformationsItem, graphicsTransformationsItem, textItem, graphics2DItem, hatchItem;
+    private MenuItem quitItem, graphicsItem, textTransformationsItem, graphicsTransformationsItem, textItem, graphics2DItem, hatchItem, myItem;
 
     private String currentDirectory = null;
 
@@ -122,6 +122,12 @@ public class DXFTest extends JFrame
         hatchItem.setActionCommand("hatch");
         hatchItem.addActionListener(this);
         fileMenu.add(hatchItem);
+
+        myItem = new MenuItem("Moje testy");
+        myItem.setActionCommand("moje_testy");
+        myItem.addActionListener(this);
+        fileMenu.add(myItem);
+
 
         quitItem = new MenuItem("Quit");
         quitItem.setActionCommand("quit");
