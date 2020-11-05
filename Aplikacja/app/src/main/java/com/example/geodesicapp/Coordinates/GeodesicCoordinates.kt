@@ -1,4 +1,4 @@
-package com.example.geodesicapp
+package com.example.geodesicapp.Coordinates
 
 class GeodesicCoordinates(private var heigthH:Double, private var lengthL:Double,
                             private var widthB:Double)

@@ -1,4 +1,4 @@
-package com.example.geodesicapp
+package com.example.geodesicapp.FileLoading
 
 import android.graphics.*
 import java.awt.Graphics
