@@ -1,15 +1,22 @@
 package com.example.geodesicapp.MeasurementManager
 
 import com.example.geodesicapp.Coordinates.Coordinates
+import com.example.geodesicapp.FileLoading.MapStorage
 import com.example.geodesicapp.Measurements.Measurement
 
-class MeasurementManager(private var measurement:List<Measurement>
-                        //currentMap:MapStorage
+class MeasurementManager(private var measurement:MutableList<Measurement>,
+                        currentMap: MapStorage
 ) {
 
     fun add(newMeasurement: Measurement):Boolean{
-
-        return false
+        var toReturn = true
+        try {
+            newMeasurement.draw()
+            measurement.add(newMeasurement)
+        }catch(e:Exception){
+            toReturn = false
+        }
+        return toReturn
     }
 
     fun addOptionalInfo():Unit{
@@ -26,7 +33,9 @@ class MeasurementManager(private var measurement:List<Measurement>
     }
 
     fun drawData():Unit{
-
+        for(m in measurement){
+            m.draw()
+        }
     }
 
     fun end():Boolean{

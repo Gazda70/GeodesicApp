@@ -10,15 +10,17 @@ class Line(comment:String, measurementType:String,
 
     override fun draw() {
         var paint = Paint()
-        paint.color = Color.rgb(255,255,255)
-        paint.strokeWidth =10F
+        paint.color = Color.rgb(0,0,0)
+        paint.strokeWidth =100F
         var canvas  = MapStorage.instance.getGraphics()
-        canvas?.drawLine(points[0].getCoordinates().Geodesic.getCoordinates().third.toFloat(),
-            points[0].getCoordinates().Geodesic.getCoordinates().second.toFloat(),
-            points[1].getCoordinates().Geodesic.getCoordinates().third.toFloat(),
+
+        canvas?.drawLine(points[0].getCoordinates().Geodesic.getCoordinates().second.toFloat(),
+            points[0].getCoordinates().Geodesic.getCoordinates().third.toFloat(),
             points[1].getCoordinates().Geodesic.getCoordinates().second.toFloat(),
+            points[1].getCoordinates().Geodesic.getCoordinates().third.toFloat(),
             paint
             )
+       // canvas?.drawLine(100.0F,100.0F,200.0F,200.0F, paint)
 
     }
 

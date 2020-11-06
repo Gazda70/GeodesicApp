@@ -3,10 +3,7 @@ package com.example.geodesicapp.FileLoading
 import android.graphics.*
 import android.widget.ImageView
 import org.kabeja.dxf.DXFDocument
-import java.awt.Graphics
-import java.awt.Graphics2D
-import java.awt.Image
-import java.awt.image.BufferedImage
+
 
 
 class MapStorage(private var graphics:Canvas?, private var KabejaDocument: DXFDocument?) {
