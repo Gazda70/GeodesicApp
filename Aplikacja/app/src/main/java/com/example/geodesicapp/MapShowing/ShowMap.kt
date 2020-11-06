@@ -3,9 +3,11 @@ package com.example.geodesicapp.MapShowing
 import com.example.geodesicapp.Coordinates.Coordinates
 import com.example.geodesicapp.Coordinates.GeodesicCoordinates
 import com.example.geodesicapp.Coordinates.GeographicCoordinates
+import com.example.geodesicapp.FileLoading.MapStorage
 
-class ShowMap(private var currentUserLocation: Coordinates, private var mapLocation: Coordinates
-                //private var currentMap:MapStorage
+class ShowMap(private var currentUserLocation: Coordinates,
+              private var mapLocation: Coordinates,
+                private var currentMap: MapStorage
                 ) {
 
     fun checkCurrentUserLocation(): Coordinates {

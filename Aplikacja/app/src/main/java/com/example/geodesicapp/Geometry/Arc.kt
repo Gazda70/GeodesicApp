@@ -1,5 +1,6 @@
 package com.example.geodesicapp.Geometry
 
+import com.example.geodesicapp.FileLoading.MapStorage
 import com.example.geodesicapp.Measurements.Point
 
 class Arc(private var angle:Double, private var points:List<Point>,
@@ -7,7 +8,6 @@ class Arc(private var angle:Double, private var points:List<Point>,
             :Primitive(color,nextPrimitive, style,thickness) {
 
     override fun drawShape():Unit{
-
     }
 
     fun getAngle():Double{

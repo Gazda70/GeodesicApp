@@ -1,7 +1,8 @@
 package com.example.geodesicapp.Geometry
 
+import android.graphics.Path
+import com.example.geodesicapp.Measurements.Line
 import com.example.geodesicapp.Measurements.Point
-import javax.sound.sampled.Line
 
 class Polyline(private var lines: Line, color:Int,
                nextPrimitive: Primitive, style:Int, thickness:Int)
@@ -9,7 +10,6 @@ class Polyline(private var lines: Line, color:Int,
 {
 
     override fun drawShape() {
-        TODO("Not yet implemented")
     }
 
     fun getLines():Line{

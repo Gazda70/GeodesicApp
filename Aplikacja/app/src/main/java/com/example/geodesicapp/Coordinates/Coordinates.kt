@@ -1,7 +1,7 @@
 package com.example.geodesicapp.Coordinates
 
-class Coordinates(private var Geodesic : GeodesicCoordinates,
-                  private var Geographic : GeographicCoordinates
+class Coordinates(var Geodesic : GeodesicCoordinates,
+                  var Geographic : GeographicCoordinates
 ) {
 
     fun geodToGeogr():Unit{
