@@ -8,10 +8,18 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.widget.ImageView
+import com.example.geodesicapp.Coordinates.Coordinates
+import com.example.geodesicapp.Coordinates.GeodesicCoordinates
+import com.example.geodesicapp.Coordinates.GeographicCoordinates
 import com.example.geodesicapp.FileLoading.FileLoaderKabeja
 import com.example.geodesicapp.FileLoading.MapStorage
+import com.example.geodesicapp.MapShowing.ShowMap
+import com.example.geodesicapp.MeasurementManager.MeasurementManager
+import com.example.geodesicapp.Measurements.Measurement
 
-
+/**
+ * Główna aktywność aplikacji.
+ */
 class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +36,11 @@ class MainActivity : Activity() {
         var canvas = Canvas(drawer)
         MapStorage.instance.setGraphics(canvas)
         imageView.setImageBitmap(drawer)
+
+        var geodesist = Geodesist(docu, ShowMap(Coordinates(GeodesicCoordinates(0.0,0.0,0.0), GeographicCoordinates()),
+            Coordinates(GeodesicCoordinates(0.0,0.0,0.0), GeographicCoordinates()),
+            MapStorage.instance), MeasurementManager(emptyList<Measurement>() ))
+        geodesist.loadMap()
 
     }
 
