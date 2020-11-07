@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: "org.jetbrains.dokka"
+
 
 android {
     compileSdkVersion 30
@@ -23,11 +24,18 @@ android {
         }
     }
 
-    dokka {
-        outputFormat = 'html'
-        outputDirectory = "$buildDir/javadoc"
+
+
+}
+dokkaHtml.configure {
+    dokkaSourceSets {
+        named("main") {
+
+            noAndroidSdkLink.set(false)
+        }
     }
 }
+
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -38,5 +46,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.4.10.2")
 }
