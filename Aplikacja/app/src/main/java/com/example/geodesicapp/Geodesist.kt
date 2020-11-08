@@ -25,7 +25,17 @@ class Geodesist(private var measurementManager: MeasurementManager,
      * @return true, gdy użytkownik poprawnie dokonał pomiaru.
      */
     fun addMeasure():Boolean{
-        measurementManager.add(Line("", "", ""))
+        measurementManager.add(Line("", "", "",  listOf(Point("", "", "", Coordinates(
+            GeodesicCoordinates(0.0, 100.0, 600.0),
+            GeographicCoordinates(100.0, 600.0)
+        )
+        ),
+            Point("", "", "", Coordinates(
+                GeodesicCoordinates(0.0, 600.0, 600.0),
+                GeographicCoordinates(600.0, 600.0)
+            )
+            )))
+        )
         return false
     }
 

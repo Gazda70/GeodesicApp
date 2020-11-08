@@ -15,10 +15,9 @@ import com.example.geodesicapp.FileLoading.MapStorage
  * @property points lista punktów tworzących linię.
  */
 class Line(comment:String, measurementType:String,
-           photoPath:String)
+           photoPath:String, private var points:List<Point>)
             :Measurement(comment, measurementType, photoPath) {
 
-    private lateinit var points:List<Point>
     /**
      * Metoda rysująca linię.
      */
@@ -28,16 +27,7 @@ class Line(comment:String, measurementType:String,
         paint.strokeWidth =100F
         var canvas  = MapStorage.instance.getGraphics()
 
-        setPoints(listOf(Point("", "", "", Coordinates(
-            GeodesicCoordinates(0.0, 100.0, 600.0),
-            GeographicCoordinates(100.0, 600.0)
-        )
-        ),
-            Point("", "", "", Coordinates(
-                GeodesicCoordinates(0.0, 600.0, 600.0),
-                GeographicCoordinates(600.0, 600.0)
-            )
-            )))
+        setPoints(getPoints())
 
         canvas?.drawLine(points[0].getCoordinates().Geodesic.getCoordinates().second.toFloat(),
             points[0].getCoordinates().Geodesic.getCoordinates().third.toFloat(),
@@ -57,7 +47,6 @@ class Line(comment:String, measurementType:String,
      * @return lista punktów tworzących linię.
      */
     fun getPoints():List<Point>{
-
         return this.points
     }
 
