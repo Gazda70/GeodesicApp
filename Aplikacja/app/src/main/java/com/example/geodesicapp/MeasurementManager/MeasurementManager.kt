@@ -1,14 +1,15 @@
 package com.example.geodesicapp.MeasurementManager
 
 import com.example.geodesicapp.Coordinates.Coordinates
+import com.example.geodesicapp.FileLoading.MapStorage
 import com.example.geodesicapp.Measurements.Measurement
 
 /**
  * Klasa obsługująca pomiary.
  * @property measurement lista pomiarów obslugiwanych przez obiekt.
  */
-class MeasurementManager(private var measurement:List<Measurement>
-                        //currentMap:MapStorage
+class MeasurementManager(private var measurement:MutableList<Measurement>,
+                        currentMap: MapStorage
 ) {
 
     /**
@@ -17,8 +18,14 @@ class MeasurementManager(private var measurement:List<Measurement>
      * @return true, gdy dodanie pomiaru powiodło się.
      */
     fun add(newMeasurement: Measurement):Boolean{
-
-        return false
+        var toReturn = true
+        try {
+            newMeasurement.draw()
+            measurement.add(newMeasurement)
+        }catch(e:Exception){
+            toReturn = false
+        }
+        return toReturn
     }
 
     /**
@@ -49,7 +56,9 @@ class MeasurementManager(private var measurement:List<Measurement>
      * Metoda wywołująca rysowanie przechowywanych pomiarów.
      */
     fun drawData():Unit{
-
+        for(m in measurement){
+            m.draw()
+        }
     }
 
     /**

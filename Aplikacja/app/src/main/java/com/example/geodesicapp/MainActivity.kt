@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.widget.Button
 import android.widget.ImageView
 import com.example.geodesicapp.Coordinates.Coordinates
 import com.example.geodesicapp.Coordinates.GeodesicCoordinates
@@ -21,6 +22,13 @@ import com.example.geodesicapp.Measurements.Measurement
  * Główna aktywność aplikacji.
  */
 class MainActivity : Activity() {
+
+    lateinit var myGeodesist:Geodesist
+    var measurements:MutableList<Measurement> = mutableListOf()
+    var showMap:ShowMap = ShowMap(Coordinates(GeodesicCoordinates(0.0, 0.0, 0.0), GeographicCoordinates(0.0,0.0)),
+        Coordinates(GeodesicCoordinates(0.0, 0.0, 0.0), GeographicCoordinates(0.0,0.0)), MapStorage.instance
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,11 +45,14 @@ class MainActivity : Activity() {
         MapStorage.instance.setGraphics(canvas)
         imageView.setImageBitmap(drawer)
 
-        var geodesist = Geodesist(docu, ShowMap(Coordinates(GeodesicCoordinates(0.0,0.0,0.0), GeographicCoordinates()),
-            Coordinates(GeodesicCoordinates(0.0,0.0,0.0), GeographicCoordinates()),
-            MapStorage.instance), MeasurementManager(emptyList<Measurement>() ))
-        geodesist.loadMap()
+        myGeodesist = Geodesist(MeasurementManager(measurements, MapStorage.instance),
+            MapStorage.instance, docu, showMap)
 
+        var useMapButton: Button = this.findViewById(R.id.button)
+
+        useMapButton.setOnClickListener {
+            myGeodesist.useMap()
+        }
     }
 
 }
