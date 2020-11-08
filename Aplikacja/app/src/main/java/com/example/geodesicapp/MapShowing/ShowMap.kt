@@ -100,7 +100,10 @@ class ShowMap(private var currentUserLocation: Coordinates,
                     )
 
                     //dodanie pomiaru do listy Managera
-                    manager.add(Line("", "", "", ourList))
+                    var newLine = Line("", "", "")
+                    newLine.setPoints(ourList)
+                    manager.add(newLine)
+
 
                     ourList.clear()
                 }

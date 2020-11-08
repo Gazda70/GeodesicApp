@@ -18,14 +18,12 @@ class MeasurementManager(private var measurement:MutableList<Measurement>,
      * @return true, gdy dodanie pomiaru powiodło się.
      */
     fun add(newMeasurement: Measurement):Boolean{
-        var toReturn = true
-        try {
+
+            choosePointOrBlock()
             newMeasurement.draw()
             measurement.add(newMeasurement)
-        }catch(e:Exception){
-            toReturn = false
-        }
-        return toReturn
+
+        return end()
     }
 
     /**
@@ -41,7 +39,7 @@ class MeasurementManager(private var measurement:MutableList<Measurement>,
      */
     fun choosePointOrBlock():Boolean{
 
-        return false
+        return true
     }
 
     /**
@@ -68,7 +66,7 @@ class MeasurementManager(private var measurement:MutableList<Measurement>,
      */
     fun end():Boolean{
 
-        return false
+        return true
     }
 
     /**

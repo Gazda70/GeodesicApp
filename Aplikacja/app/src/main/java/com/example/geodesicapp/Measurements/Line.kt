@@ -2,6 +2,9 @@ package com.example.geodesicapp.Measurements
 
 import android.graphics.Color
 import android.graphics.Paint
+import com.example.geodesicapp.Coordinates.Coordinates
+import com.example.geodesicapp.Coordinates.GeodesicCoordinates
+import com.example.geodesicapp.Coordinates.GeographicCoordinates
 import com.example.geodesicapp.FileLoading.MapStorage
 
 /**
@@ -12,10 +15,10 @@ import com.example.geodesicapp.FileLoading.MapStorage
  * @property points lista punktów tworzących linię.
  */
 class Line(comment:String, measurementType:String,
-           photoPath:String,private var points:List<Point>)
+           photoPath:String)
             :Measurement(comment, measurementType, photoPath) {
 
-
+    private lateinit var points:List<Point>
     /**
      * Metoda rysująca linię.
      */
@@ -25,12 +28,26 @@ class Line(comment:String, measurementType:String,
         paint.strokeWidth =100F
         var canvas  = MapStorage.instance.getGraphics()
 
+        setPoints(listOf(Point("", "", "", Coordinates(
+            GeodesicCoordinates(0.0, 100.0, 600.0),
+            GeographicCoordinates(100.0, 600.0)
+        )
+        ),
+            Point("", "", "", Coordinates(
+                GeodesicCoordinates(0.0, 600.0, 600.0),
+                GeographicCoordinates(600.0, 600.0)
+            )
+            )))
+
         canvas?.drawLine(points[0].getCoordinates().Geodesic.getCoordinates().second.toFloat(),
             points[0].getCoordinates().Geodesic.getCoordinates().third.toFloat(),
             points[1].getCoordinates().Geodesic.getCoordinates().second.toFloat(),
             points[1].getCoordinates().Geodesic.getCoordinates().third.toFloat(),
             paint
             )
+        this.setComment("")
+        this.setMeasurementType("Linia")
+        this.setPhotoPath("MojeZdjęcia")
        // canvas?.drawLine(100.0F,100.0F,200.0F,200.0F, paint)
 
     }
@@ -49,6 +66,6 @@ class Line(comment:String, measurementType:String,
      * @param newPoints nowa lista punktów tworzących linię.
      */
     fun setPoints(newPoints:List<Point>):Unit{
-
+        this.points = newPoints
     }
 }

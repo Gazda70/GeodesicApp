@@ -1,9 +1,15 @@
 package com.example.geodesicapp
 
+import com.example.geodesicapp.Coordinates.Coordinates
+import com.example.geodesicapp.Coordinates.GeodesicCoordinates
+import com.example.geodesicapp.Coordinates.GeographicCoordinates
 import com.example.geodesicapp.FileLoading.FileLoaderKabeja
 import com.example.geodesicapp.FileLoading.MapStorage
 import com.example.geodesicapp.MapShowing.ShowMap
 import com.example.geodesicapp.MeasurementManager.MeasurementManager
+import com.example.geodesicapp.Measurements.Line
+import com.example.geodesicapp.Measurements.Measurement
+import com.example.geodesicapp.Measurements.Point
 
 /**
  * Klasa obsługująca główny interfejs modelu aplikacji geodezyjnej.
@@ -19,7 +25,7 @@ class Geodesist(private var measurementManager: MeasurementManager,
      * @return true, gdy użytkownik poprawnie dokonał pomiaru.
      */
     fun addMeasure():Boolean{
-
+        measurementManager.add(Line("", "", ""))
         return false
     }
 

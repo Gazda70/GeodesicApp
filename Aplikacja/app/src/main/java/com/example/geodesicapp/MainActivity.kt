@@ -46,11 +46,12 @@ class MainActivity : Activity() {
         imageView.setImageBitmap(drawer)
 
         myGeodesist = Geodesist(MeasurementManager(measurements, MapStorage.instance), docu, showMap)
+        myGeodesist.useMap()
 
-        var useMapButton: Button = this.findViewById(R.id.button)
+        var addMeasurementButton: Button = this.findViewById(R.id.button)
 
-        useMapButton.setOnClickListener {
-            myGeodesist.useMap()
+        addMeasurementButton.setOnClickListener {
+            myGeodesist.addMeasure()
         }
     }
 
