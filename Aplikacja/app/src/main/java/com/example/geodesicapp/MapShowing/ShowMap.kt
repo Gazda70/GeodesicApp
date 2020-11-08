@@ -14,7 +14,7 @@ import org.kabeja.dxf.DXFLine
 
 /**
  * Klasa odpowiedzialna za odpowiednie przetworzenie danych użytkownika, by mapa była odpowiednio wyświetlana.
- * @property currentMap koordynaty użytkownika.
+ * @property currentUserLocation koordynaty użytkownika.
  * @property mapLocation koordynaty położenia mapy.
  * @property currentMap akturalnie przetwarzana mapa.
  */
@@ -60,51 +60,53 @@ class ShowMap(private var currentUserLocation: Coordinates,
     }
 
     /**
-     * Metoda wywołująca pokazanie aktualnej pozycji użytkownika na ekranie.
+     * Metoda pokazująca aktualną lokalizację użytkownika na ekranie.
      */
      fun showCurrentLocation(): Unit {
-         currentMap.getKabejaDocument()
-         currentMap.getGraphics()
-         manager = MeasurementManager(measurements, currentMap)
+        currentMap.getKabejaDocument()
+        currentMap.getGraphics()
+        manager = MeasurementManager(measurements, currentMap)
 
-         val i = MapStorage.instance.getKabejaDocument()?.dxfLayerIterator;
-         val ourList = mutableListOf<Point>()
-         while (i?.hasNext()!!) {
-             val layer: DXFLayer = i.next() as DXFLayer;
-             // check the lines
-             if (layer.hasDXFEntities(DXFConstants.ENTITY_TYPE_LINE)) {
-                 val l = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_LINE);
-                 val i = l.iterator();
+        val i = MapStorage.instance.getKabejaDocument()?.dxfLayerIterator;
+        val ourList = mutableListOf<Point>()
+        while (i?.hasNext()!!) {
+            val layer: DXFLayer = i.next() as DXFLayer;
+            // check the lines
+            if (layer.hasDXFEntities(DXFConstants.ENTITY_TYPE_LINE)) {
+                val l = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_LINE);
+                val i = l.iterator();
 
-                 while (i.hasNext()) {
-                     val line: DXFLine = i.next() as DXFLine;
-                     ourList.add(
-                         Point(
-                             "", "", "",
-                             Coordinates(
-                                 GeodesicCoordinates(0.0, line.startPoint.x.toFloat().toDouble() / 100.0F, line.startPoint.y.toFloat().toDouble() / 100.0F),
-                                 GeographicCoordinates(0.0, 0.0)
-                             )
-                         )
-                     )
-                     ourList.add(
-                         Point(
-                             "", "", "",
-                             Coordinates(
-                                 GeodesicCoordinates(0.0, line.endPoint.x.toFloat().toDouble() / 100.0F, line.endPoint.y.toFloat().toDouble() / 100.0F),
-                                 GeographicCoordinates(0.0, 0.0)
-                             )
-                         )
-                     )
+                while (i.hasNext()) {
+                    val line: DXFLine = i.next() as DXFLine;
+                    ourList.add(
+                        Point(
+                            "", "", "",
+                            Coordinates(
+                                // GeodesicCoordinates(0.0, 0.0, 600.0),
+                                GeodesicCoordinates(0.0, (line.startPoint.x-6548159)*10, (line.startPoint.y-5573020)*10),
+                                GeographicCoordinates(0.0, 0.0)
+                            )
+                        )
+                    )
+                    ourList.add(
+                        Point(
+                            "", "", "",
+                            Coordinates(
+                                //   GeodesicCoordinates(0.0, 2500.0, 600.0),
+                                GeodesicCoordinates(0.0, (line.endPoint.x-6548159)*10, (line.endPoint.y-5573020)*10),
+                                GeographicCoordinates(0.0, 0.0)
+                            )
+                        )
+                    )
 
-                     //dodanie pomiaru do listy Managera
-                     manager.add(Line("", "", "", ourList))
+                    //dodanie pomiaru do listy Managera
+                    manager.add(Line("", "", "", ourList))
 
-                     ourList.clear()
-                 }
-             }
-         }
-
+                    ourList.clear()
+                }
+            }
+        }
+    }
     /**
      * Zwraca i pokazuje dane o aktualnych pomiarach.
      * @return informacje o aktualnie przeprowadzonych pomiarach.

@@ -7,11 +7,11 @@ import com.example.geodesicapp.MeasurementManager.MeasurementManager
 
 /**
  * Klasa obsługująca główny interfejs modelu aplikacji geodezyjnej.
- * @param kabeja obiekt obsługujący dokumenty biblioteki Kabeja.
- * @param showMap obiekt obsługujący wyświetlanie mapy.
+ * @param fileLoader obiekt obsługujący dokumenty biblioteki Kabeja.
+ * @param mapShow obiekt obsługujący wyświetlanie mapy.
  * @param measurementManager obiekt obsługujący pomiary.
  */
-class Geodesist(private var measurementManager: MeasurementManager, private var mapStorage: MapStorage,
+class Geodesist(private var measurementManager: MeasurementManager,
                 private var fileLoader: FileLoaderKabeja, private var mapShow:ShowMap) {
 
     /**
