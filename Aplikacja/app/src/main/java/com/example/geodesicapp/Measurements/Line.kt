@@ -2,6 +2,8 @@ package com.example.geodesicapp.Measurements
 
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Rect
+import android.transition.ChangeClipBounds
 import com.example.geodesicapp.Coordinates.Coordinates
 import com.example.geodesicapp.Coordinates.GeodesicCoordinates
 import com.example.geodesicapp.Coordinates.GeographicCoordinates
@@ -24,15 +26,17 @@ class Line(comment:String, measurementType:String,
     override fun draw() {
         var paint = Paint()
         paint.color = Color.rgb(0,0,0)
-        paint.strokeWidth =100F
+        paint.strokeWidth =1F
         var canvas  = MapStorage.instance.getGraphics()
+
+        var displayBounds = Rect(6548128,5572955,6548428, 5573198)
 
         setPoints(getPoints())
 
-        canvas?.drawLine(points[0].getCoordinates().Geodesic.getCoordinates().second.toFloat(),
-            points[0].getCoordinates().Geodesic.getCoordinates().third.toFloat(),
-            points[1].getCoordinates().Geodesic.getCoordinates().second.toFloat(),
-            points[1].getCoordinates().Geodesic.getCoordinates().third.toFloat(),
+        canvas?.drawLine((points[0].getCoordinates().Geodesic.getCoordinates().second.toFloat() - displayBounds.left)/displayBounds.width() * canvas.clipBounds.width(),
+            (points[0].getCoordinates().Geodesic.getCoordinates().third.toFloat() - displayBounds.top)/displayBounds.height() * canvas.getClipBounds().height(),
+            (points[1].getCoordinates().Geodesic.getCoordinates().second.toFloat() - displayBounds.left)/displayBounds.width() * canvas.clipBounds.width(),
+            (points[1].getCoordinates().Geodesic.getCoordinates().third.toFloat() - displayBounds.top)/displayBounds.height() * canvas.getClipBounds().height(),
             paint
             )
         this.setComment("")

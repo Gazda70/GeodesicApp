@@ -1,5 +1,7 @@
 package com.example.geodesicapp
 
+
+
 import com.example.geodesicapp.Coordinates.Coordinates
 import com.example.geodesicapp.Coordinates.GeodesicCoordinates
 import com.example.geodesicapp.Coordinates.GeographicCoordinates
@@ -25,18 +27,23 @@ class Geodesist(private var measurementManager: MeasurementManager,
      * @return true, gdy użytkownik poprawnie dokonał pomiaru.
      */
     fun addMeasure():Boolean{
+        //Testowy pomiar.
+        val startX = 6548214.0
+        val startY = 5573136.0
+        val endX = 6548240.0
+        val endY = 5572998.0
         measurementManager.add(Line("", "", "",  listOf(Point("", "", "", Coordinates(
-            GeodesicCoordinates(0.0, 100.0, 600.0),
+            GeodesicCoordinates(0.0, startX, startY),
             GeographicCoordinates(100.0, 600.0)
         )
         ),
             Point("", "", "", Coordinates(
-                GeodesicCoordinates(0.0, 600.0, 600.0),
+                GeodesicCoordinates(0.0, endX, endY),
                 GeographicCoordinates(600.0, 600.0)
             )
             )))
         )
-        return false
+        return true
     }
 
     /**

@@ -63,6 +63,15 @@ class ShowMap(private var currentUserLocation: Coordinates,
      * Metoda pokazująca aktualną lokalizację użytkownika na ekranie.
      */
      fun showCurrentLocation(): Unit {
+        val startX = 6548128
+        val startY = 5572955
+
+        val endX = 6548428
+        val endY = 5573198
+
+        val distanceX = endX - startX
+        val distanceY = endY - startY
+
         currentMap.getKabejaDocument()
         currentMap.getGraphics()
         manager = MeasurementManager(measurements, currentMap)
@@ -83,7 +92,7 @@ class ShowMap(private var currentUserLocation: Coordinates,
                             "", "", "",
                             Coordinates(
                                 // GeodesicCoordinates(0.0, 0.0, 600.0),
-                                GeodesicCoordinates(0.0, (line.startPoint.x-6548159)*10, (line.startPoint.y-5573020)*10),
+                                GeodesicCoordinates(0.0, line.startPoint.x, line.startPoint.y),
                                 GeographicCoordinates(0.0, 0.0)
                             )
                         )
@@ -93,7 +102,7 @@ class ShowMap(private var currentUserLocation: Coordinates,
                             "", "", "",
                             Coordinates(
                                 //   GeodesicCoordinates(0.0, 2500.0, 600.0),
-                                GeodesicCoordinates(0.0, (line.endPoint.x-6548159)*10, (line.endPoint.y-5573020)*10),
+                                GeodesicCoordinates(0.0, line.endPoint.x, line.endPoint.y),
                                 GeographicCoordinates(0.0, 0.0)
                             )
                         )
