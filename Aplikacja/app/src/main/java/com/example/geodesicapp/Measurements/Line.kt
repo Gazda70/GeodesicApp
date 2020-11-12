@@ -61,4 +61,5 @@ class Line(comment:String, measurementType:String,
     fun setPoints(newPoints:List<Point>):Unit{
         this.points = newPoints
     }
+    
 }
